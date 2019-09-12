@@ -12,7 +12,7 @@ from .common import InfoExtractor
 
 class AnimevostIE(InfoExtractor):
     _TESTS = [{
-        'url': 'http://animevost.org/tip/tv/1864-renai-boukun.html',
+        'url': 'https://animevost.org/tip/tv/1864-renai-boukun.html',
         'info_dict': {
             'title': 'Любовь тирана / Renai Boukun',
             'id': '1864',
@@ -20,7 +20,7 @@ class AnimevostIE(InfoExtractor):
         'playlist_mincount': 10,
     }, {
 
-        'url': 'http://animevost.org/tip/tv-speshl/1854-ryuu-no-haisha.html',
+        'url': 'https://animevost.org/tip/tv-speshl/1854-ryuu-no-haisha.html',
         'info_dict': {
             'title': 'Драконий дантист / Ryuu no Haisha',
             'id': '1854',
@@ -28,14 +28,14 @@ class AnimevostIE(InfoExtractor):
         'playlist_mincount': 2,
     }, {
 
-        'url': 'http://animevost.org/tip/ova/1741-mahou-tsukai-no-yome-hoshi-matsu-hito.html',
+        'url': 'https://animevost.org/tip/ova/1741-mahou-tsukai-no-yome-hoshi-matsu-hito.html',
         'info_dict': {
             'title': 'Невеста чародея / Mahou Tsukai no Yome: Hoshi Matsu Hito',
             'id': '1741',
         },
         'playlist_mincount': 2,
     }, {
-        'url': 'http://animevost.org/tip/ona/1797-huyao-xiao-hongniang.html',
+        'url': 'https://animevost.org/tip/ona/1797-huyao-xiao-hongniang.html',
         'info_dict': {
             'title': 'Сводники духов: Лисьи свахи / Huyao Xiao Hongniang',
             'id': '1797',
