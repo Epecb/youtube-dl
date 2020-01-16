@@ -44,7 +44,7 @@ class AnimevostIE(InfoExtractor):
     }]
 
     _VALID_URL = r'https://animevost\.org/tip/[-\w\d]+/(\d+)-[-\w\d]+\.html'
-    _TITLE_PATTERN = r'<meta property="og:title" content="([-\s\d\w/:#;.,!?&()]+)\['
+    _TITLE_PATTERN = r'<meta property="og:title" content="([-\s\d\w/:«»#;.,!?&()]+)\['
     _DATA_PATTERN = r'var data = \{([-\d\w\s,":]+)\};'
 
     def _real_extract(self, url):
