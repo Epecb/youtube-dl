@@ -89,5 +89,5 @@ class AnimevostEntryIE(InfoExtractor):
             'id': eid,
             'url': video_url,
             'ext': 'mp4',
-            'title': eid,
+            'title': '',
         }
