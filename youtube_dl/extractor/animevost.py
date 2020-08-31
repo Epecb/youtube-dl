@@ -30,7 +30,7 @@ class AnimevostIE(InfoExtractor):
 
         'url': 'https://animevost.org/tip/ova/1741-mahou-tsukai-no-yome-hoshi-matsu-hito.html',
         'info_dict': {
-            'title': 'Невеста чародея / Mahou Tsukai no Yome: Hoshi Matsu Hito',
+            'title': 'Невеста чародея ОВА / Mahou Tsukai no Yome: Hoshi Matsu Hito',
             'id': '1741',
         },
         'playlist_mincount': 2,
@@ -41,11 +41,19 @@ class AnimevostIE(InfoExtractor):
             'id': '1797',
         },
         'playlist_mincount': 57,
+    }, {
+
+        'url': 'https://animevost.org/tip/ona/page,1,8,1943-castlevania.html',
+        'info_dict': {
+            'title': 'Касльвания / Castlevania',
+            'id': 'page,1,8,1943',
+        },
+        'playlist_mincount': 4,
     }]
 
-    _VALID_URL = r'https://animevost\.org/tip/[-\w\d]+/(\d+)-[-\w\d]+\.html'
+    _VALID_URL = r'https://animevost\.org/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
     _TITLE_PATTERN = r'<meta property="og:title" content="([-\s\d\w/:«»#;.,!?&()]+)\['
-    _DATA_PATTERN = r'var data = \{([-\d\w\s,":]+)\};'
+    _DATA_PATTERN = r'var data = \{([-()\d\w\s,":]+)\};'
 
     def _real_extract(self, url):
         anime_id = self._search_regex(
