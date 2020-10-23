@@ -6,6 +6,7 @@ from __future__ import unicode_literals
 import re
 import json
 from collections import OrderedDict
+from ..utils import urlencode_postdata
 
 from .common import InfoExtractor
 
@@ -56,27 +57,33 @@ class AnimevostIE(InfoExtractor):
     _DATA_PATTERN = r'var data = \{([-()\d\w\s,":]+)\};'
 
     def _real_extract(self, url):
+        # api url
+        # https://api.animevost.org/v1/playlist --data 'id=1943'
+
+        api_url = 'https://api.animevost.org/v1/playlist'
+        data_req = 'id=%s'
+
         anime_id = self._search_regex(
             self._VALID_URL, url, 'anime id', flags=re.UNICODE)
 
-        anime_page = self._download_webpage(url, anime_id)
-        anime_title = self._html_search_regex(
-            self._TITLE_PATTERN, anime_page, 'anime title', flags=re.UNICODE)
+        request_data = urlencode_postdata({
+            'id': anime_id,
+        })
+        anime_page = self._download_webpage(api_url, anime_id, data=request_data)
+        data = json.loads(anime_page)
 
-        data_str = self._html_search_regex(
-            self._DATA_PATTERN, anime_page, 'anime series', flags=re.UNICODE)
-        if data_str[-1] == ',':
-            data_str = data_str[:-1]
-        data = json.loads("{%s}" % data_str, object_pairs_hook=OrderedDict)
+        rgx = re.compile(r'^[0-9]+')
+        data = sorted(data, key=lambda data: int(
+            rgx.match(data.get('name')).group()))
+
+        anime_title = url
 
         entries = self.__entries(data, anime_title)
         return self.playlist_result(entries, anime_id, anime_title)
 
     def __entries(self, data, anime_title):
-        for ename, eid in data.items():
-            entry_url = 'http://play.aniland.org/%s' % eid
-            full_title = '%s - %s' % (anime_title, ename)
-            yield self.url_result(entry_url, 'AnimevostEntry', eid, full_title)
+        for i in data:
+            yield self.url_result(i.get('hd'), '', anime_title, i.get('name'))
 
 
 class AnimevostEntryIE(InfoExtractor):
