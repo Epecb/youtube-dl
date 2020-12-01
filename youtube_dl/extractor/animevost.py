@@ -72,9 +72,13 @@ class AnimevostIE(InfoExtractor):
         anime_page = self._download_webpage(api_url, anime_id, data=request_data)
         data = json.loads(anime_page)
 
-        rgx = re.compile(r'^[0-9]+')
-        data = sorted(data, key=lambda data: int(
-            rgx.match(data.get('name')).group()))
+        def get_name(data):
+            rgx = re.compile(r'^[0-9]+')
+            mtch = rgx.match(data.get('name'))
+            result = 0 if not mtch else mtch.group()
+            return result
+
+        data = sorted(data, key=lambda data: int(get_name(data)))
 
         anime_title = url
 
