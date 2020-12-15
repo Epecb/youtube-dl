@@ -82,7 +82,7 @@ class AnimevostIE(InfoExtractor):
 class AnimevostEntryIE(InfoExtractor):
     _VALID_URL = r'http://play.aniland.org/(.+)'
     _PLAYER_URL_PATTERN = r'http://play.aniland.org/%s'
-    _FLASHVARS_PATTERN = r'download="invoice".*"(http:[^"]+)"'
+    _FLASHVARS_PATTERN = r'"file":".*(https?:[^ ]+)'
 
     def _real_extract(self, url):
         eid = url.split('/')[-1]
