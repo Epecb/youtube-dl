@@ -58,9 +58,9 @@ class AnimevostIE(InfoExtractor):
 
     def _real_extract(self, url):
         # api url
-        # https://api.animetop.info/v1/playlist --data 'id=1943'
+        # https://api.animevost.org/v1/playlist --data 'id=1943'
 
-        api_url = 'https://api.animetop.info/v1/playlist'
+        api_url = 'https://api.animevost.org/v1/playlist'
         data_req = 'id=%s'
 
         anime_id = self._search_regex(
