@@ -59,16 +59,21 @@ class AnistarIE(InfoExtractor):
         pl = []
         for i in series:
             series_name = re.sub(
-                    r'[,"]', '', re.findall(self._TITLE, i)[0]
-                    )
+                r'[,"]', '', re.findall(self._TITLE, i)[0]
+            )
             m3u8_url = m3u8_template.format(hash=re.search(self._HASH,
-                urllib.parse.unquote(
-                    re.sub(
-                        r'[,"]', '', re.findall(self._FILE, i)[0]
-                        )
-                    ))[1])
-
-            pl.append([ series_name, m3u8_url ])
+                                            urllib.parse.unquote(
+                                                re.sub(
+                                                    r'[,"]',
+                                                    '',
+                                                    re.findall(
+                                                        self._FILE,
+                                                        i)[0]
+                                                )
+                                            )
+            )[1]
+            )
+            pl.append([series_name, m3u8_url])
 
         # for i in pl:
         #     print(i[0])
@@ -81,4 +86,4 @@ class AnistarIE(InfoExtractor):
 
     def __entries(self, data, anime_title):
         for i in data:
-            yield self.url_result( i[1], '', anime_title, i[0] )
+            yield self.url_result(i[1], '', anime_title, i[0])
