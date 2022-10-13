@@ -74,15 +74,18 @@ class AnimevostIE(InfoExtractor):
         return self.playlist_result(entries, anime_id, anime_title)
 
     def __entries(self, data, anime_title):
+        video_hosting = "http://video.animetop.info/720/{eid}.mp4"
         for ename, eid in data.items():
-            entry_url = 'http://play.aniland.org/%s' % eid
+            entry_url = video_hosting.format(eid=eid)
             full_title = '%s - %s' % (anime_title, ename)
             yield self.url_result(entry_url, 'AnimevostEntry', eid, full_title)
 
-
+# https://v2.vost.pw/frame5.php?play=2147422746&old=1
+# http://video.animetop.info/720/2147422689.mp4
+# http://video.animetop.info/720/<hash>.mp4
 class AnimevostEntryIE(InfoExtractor):
-    _VALID_URL = r'http://play.aniland.org/(.+)'
-    _PLAYER_URL_PATTERN = r'http://play.aniland.org/%s'
+    _VALID_URL = r'https://play.aniland.org/(.+)'
+    _PLAYER_URL_PATTERN = r'https://play.aniland.org/%s'
     _FLASHVARS_PATTERN = r'"file":".*(https?:[^ ]+)'
 
     def _real_extract(self, url):
