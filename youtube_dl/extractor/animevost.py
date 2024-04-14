@@ -53,7 +53,7 @@ class AnimevostIE(InfoExtractor):
 
     # _VALID_URL = r'https://v2\.vost\.pw/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
     _VALID_URL = r'https://(?:animevost\.org|v.\.vost\.pw)/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
-    _TITLE_PATTERN = r'<meta property="og:title" content="([-—\s\d\w/:«»#;.,!?&()]+)\['
+    _TITLE_PATTERN = r'<meta property="og:title" content="([-—\s\d\w/:«»#;.,!?&()№]+)\['
     _DATA_PATTERN = r'var data = \{([-()\d\w\s,":]+)\};'
 
     def _real_extract(self, url):
@@ -74,7 +74,7 @@ class AnimevostIE(InfoExtractor):
         return self.playlist_result(entries, anime_id, anime_title)
 
     def __entries(self, data, anime_title):
-        video_hosting = "http://video.animetop.info/720/{eid}.mp4"
+        video_hosting = "https://video.animetop.info/720/{eid}.mp4"
         for ename, eid in data.items():
             entry_url = video_hosting.format(eid=eid)
             full_title = '%s - %s' % (anime_title, ename)
