@@ -52,7 +52,7 @@ class AnimevostIE(InfoExtractor):
     }]
 
     # _VALID_URL = r'https://v2\.vost\.pw/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
-    _VALID_URL = r'https://(?:animevost\.org|v.\.vost\.pw)/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
+    _VALID_URL = r'https://(?:animevost\.org|v.*?\.vost\.pw)/tip/[-\w\d]+/([,\w\d]+)-[-\w\d]+\.html'
     _TITLE_PATTERN = r'<meta property="og:title" content="([-—\s\d\w/:«»#;.,!?&()№]+)\['
     _DATA_PATTERN = r'var data = \{([-()\d\w\s,":]+)\};'
 
